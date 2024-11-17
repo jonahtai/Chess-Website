@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="util.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="titlebar">
+            <h1>chess chingadinga</h1>
+        </div>
+        <div id="searchbuttons">
+            <a href="#searchbar">Search</a>
+            <a href="#leaderboard">Leaderboard</a>
+            <a href="#Pairs">Pairs</a>
+        </div>
+    </div>
+    <div class="section"></div>
+    <div class="container searchdiv">
+        <div class="searchtitle">
+            <h1 style="margin: 0;">Search for Player</h1>
+        </div>
+        <form id="searchbar">
+            <button class="submitbutton" onclick="search()">
+                <i class="fa fa-search"></i>
+            </button>
+            <input id="search-input" class="search-input" placeholder="Search..." oninput="search()" autocomplete="off">
+        </form>
+    </div>
+    <div class="section"></div>
+    <div class="container">
+        <div id="searchresults"></div>
+    </div>
+    
+</body>
+<script src="index.js"></script>
+</html>
