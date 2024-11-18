@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import sqlite3
+import os
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -30,5 +31,6 @@ def search():
     response = [{'name': row['name'], 'school': row['school'], 'uscfid': row['uscfid'], 'rating': row['rating'], 'link': row['link']} for row in results]
     return jsonify(response)
 if __name__ == '__main__':
-    app.run(port=8000)
+    print("Running in directory:" + os.getcwd()) 
+    app.run(port=8000)    
 
