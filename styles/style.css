@@ -15,7 +15,10 @@ body {
     background-color: var(--semidark);
     height: 3.7rem;
     align-items: center;
+    box-sizing: border-box;
+    padding: 0 0.5rem;
     justify-content: space-between;
+    position: relative;
 }
 .titlebar {
     margin-left: 1.5rem;
