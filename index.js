@@ -19,7 +19,7 @@ async function search() {
             const data = await response.json();
             displayResults(data);
         } else {
-            console.error("Error fetching search results");
+            document.getElementById('searchresults').innerHTML = '<div class="result-item" style="flex:1;">Error fetching API</div>';
         }
     }, 400);
 }
@@ -43,6 +43,6 @@ function displayResults(results) {
             resultsDiv.appendChild(div);
         });
     } else {
-        resultsDiv.innerHTML = '<div class="result-item">No results found</div>';
+        resultsDiv.innerHTML = '<div class="result-item" style="flex: 1;">No results found</div>';
     }
 }
