@@ -1,0 +1,4 @@
+# ignore database files
+.db
+
+database_init
