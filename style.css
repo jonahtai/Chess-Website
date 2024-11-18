@@ -56,7 +56,6 @@ body {
 
 #searchbar {
     display: flex;
-    width: max-content;
     align-items: center;
     padding: 0.5rem;
     border-radius: 1.7rem;
@@ -129,4 +128,20 @@ body {
 
 .result-item a {
     text-decoration: none;
+}
+
+@media (max-width:430px) {
+    .result-item {
+        width: 100%;
+    }
+    .searchtitle {
+        font-size: 1.2rem;
+    }
+    #searchbar {
+        width: 90%;
+    }
+    .titlebar {
+        margin-left: 0.5rem;
+        font-size: 0.4rem;
+    }
 }
