@@ -135,13 +135,16 @@ body {
         width: 100%;
     }
     .searchtitle {
-        font-size: 1.2rem;
+        font-size: 2rem;
     }
     #searchbar {
         width: 90%;
     }
     .titlebar {
         margin-left: 0.5rem;
-        font-size: 0.4rem;
+        font-size: 0.7rem;
+    }
+    :root {
+        font-size: 10px;
     }
 }
