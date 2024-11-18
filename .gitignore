@@ -1,4 +1,4 @@
 # ignore database files
 .db
 
-database_init
+database_init.py
