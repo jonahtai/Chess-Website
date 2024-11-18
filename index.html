@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chingadinga</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
@@ -27,18 +27,16 @@
         <div class="searchtitle">
             <h1 style="margin: 0;">Search for Player</h1>
         </div>
-        <form id="searchbar">
+        <form id="searchbar" onsubmit="return false">
             <button class="submitbutton" onclick="search()">
                 <i class="fa fa-search"></i>
             </button>
-            <input id="search-input" class="search-input" placeholder="Search..." oninput="search()" autocomplete="off">
+            <input id="search-input" class="search-input" placeholder="Search..." oninput="search()" autocomplete="off" on>
         </form>
     </div>
     <div class="section"></div>
     <div class="container">
         <div id="searchresults">
-            <div class="result-item">
-            </div>
         </div>
     </div>
     
