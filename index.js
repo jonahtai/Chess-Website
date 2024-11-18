@@ -20,7 +20,7 @@ async function search() {
         } else {
             console.error("Error fetching search results");
         }
-    }, 300);
+    }, 400);
 }
 
 function displayResults(results) {

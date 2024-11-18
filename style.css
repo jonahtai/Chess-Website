@@ -114,12 +114,18 @@ body {
 }
 
 .result-item {
+    border: 1px solid red;
     color: var(--dark);
     background-color: var(--white);
-    padding: 15px;
+    padding: 0;
+    margin: 0;
     text-align: center;
     border-radius: 1rem;
     width: calc(90%/3);
     font-size: 1.5rem;
     overflow: hidden;
+}
+
+.result-item a {
+    text-decoration: none;
 }
