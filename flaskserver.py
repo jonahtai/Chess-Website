@@ -33,5 +33,3 @@ def search():
 if __name__ == '__main__':
     print("Running in directory:" + os.getcwd()) 
     app.run(port=8000)    
-
-print("lALS JdlIAHSD alS JYDbj KSDABJD ")
