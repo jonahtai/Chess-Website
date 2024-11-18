@@ -13,8 +13,7 @@ html {
 
 .container {
     width: calc(100% - 6rem);
-    margin-left: 3rem;
-    margin-right: 3rem;
+    margin: 0 auto;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     color: var(--semidark);
