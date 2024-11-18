@@ -42,14 +42,6 @@ body {
     background-color:hsl(200, 26%, 40%);
 }
 
-.navbar #hamburgericon {
-    display: none;
-}
-
-.navbar .hamburger {
-    display: none;
-}
-
 .searchdiv {
     color: inherit;
     display: flex;
@@ -139,7 +131,7 @@ body {
     text-decoration: none;
 }
 
-@media (max-width:430px) {
+@media (max-width:620px) {
     .result-item {
         width: 100%;
     }
