@@ -2,3 +2,7 @@
 .db
 
 database_init.py
+players.db
+database.py
+info.py
+__pycache__

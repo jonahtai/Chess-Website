@@ -11,12 +11,13 @@ async function search() {
         document.getElementById('searchresults').innerHTML = '';
         return;
     }
+
     debounceTimeout = setTimeout(async() => {
         const response = await fetch(`http://127.0.0.1:8000/api/search?query=${encodeURIComponent(query)}`);
 
         if (response.ok) {
             const data = await response.json();
-            displayResults(data.results);
+            displayResults(data);
         } else {
             console.error("Error fetching search results");
         }
@@ -28,10 +29,17 @@ function displayResults(results) {
     resultsDiv.innerHTML = '';
 
     if (results.length > 0) {
-        results.forEach(name => {
+        results.forEach(item => {
             const div = document.createElement('div');
             div.className = 'result-item';
-            div.textContent = name;
+
+            div.innerHTML = `
+                <div class="name">${item.name}</div>
+                <div class="school">${item.school}</div>
+                <div class="uscfid">${item.uscfid}</div>
+                <div class="rating">${item.rating}</div>
+                <div class="link">${item.link}</div>
+                `
             resultsDiv.appendChild(div);
         });
     } else {

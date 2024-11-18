@@ -114,7 +114,6 @@ body {
 }
 
 .result-item {
-    border: 1px solid red;
     color: var(--dark);
     background-color: var(--white);
     padding: 0;
@@ -124,6 +123,8 @@ body {
     width: calc(90%/3);
     font-size: 1.5rem;
     overflow: hidden;
+    padding: 0.5rem;
+    border: 0.1rem solid var(--semidark);
 }
 
 .result-item a {
