@@ -41,6 +41,15 @@ body {
 #searchbuttons a:active {
     background-color:hsl(200, 26%, 40%);
 }
+
+.navbar #hamburgericon {
+    display: none;
+}
+
+.navbar .hamburger {
+    display: none;
+}
+
 .searchdiv {
     color: inherit;
     display: flex;
@@ -133,6 +142,9 @@ body {
 @media (max-width:430px) {
     .result-item {
         width: 100%;
+    }
+    .navbar {
+        height: 6rem;
     }
     .searchtitle {
         font-size: 2rem;
