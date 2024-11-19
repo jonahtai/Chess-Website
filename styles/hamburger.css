@@ -47,9 +47,8 @@
     #searchbuttons a {
         margin: 0.5rem 0;
         font-size: 1.2rem;
-        width: 100%;
+        width: calc(100% - 1rem);
         text-align: left;
-        padding-left: 1rem;
     }
     .hamburger.active .bar:nth-child(1) {
         transform: translateY(1.03rem) rotate(45deg);
