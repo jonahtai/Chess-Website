@@ -45,3 +45,27 @@ function displayResults(results) {
         resultsDiv.innerHTML = '<div class="result-item" style="flex: 1;">No results found</div>';
     }
 }
+
+function getLeaderboard(filters) {
+    const apiUrl = 'http://127.0.0.1:8000/api/leaderboard'
+    const minRating = document.getElementById("minrating") // ts does NOT work 
+    const maxRating = document.getElementById("maxrating") // ts does NOT work 
+    const schools = sumn // figure this out
+
+    const filters = {
+        schools: [schools], // ??????
+        minRating: minRating,
+        maxRating: maxRating
+    }
+
+    const queryString = new URLSearchParams({
+        ...filters,
+        schools: filters.schools.join(',') // uhhhhhhhhhhhhhhhhhh
+    }).toString();
+
+    const urlQuery = `${apiUrl}?${queryString}`;
+
+    fetch(urlQuery)  // CHINGALINGALING WTF
+        .then(response => response.json()) 
+        .catch(error => console.error(error))
+}
