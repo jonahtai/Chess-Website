@@ -4,22 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chingadinga</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="util.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/util.css">
+    <link rel="stylesheet" href="styles/hamburger.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="navbar">
         <div class="titlebar">
-            <h1>chess chingadinga</h1>
+            <h1>chess wesite</h1>
         </div>
         <div id="searchbuttons">
             <a href="#searchbar">Search</a>
             <a href="#leaderboard">Leaderboard</a>
             <a href="#Pairs">Pairs</a>
+        </div>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
     </div>
     <div class="section"></div>
@@ -41,5 +49,6 @@
     </div>
     
 </body>
+<script src="searchapi.js"></script>
 <script src="index.js"></script>
 </html>

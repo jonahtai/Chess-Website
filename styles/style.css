@@ -15,7 +15,10 @@ body {
     background-color: var(--semidark);
     height: 3.7rem;
     align-items: center;
+    box-sizing: border-box;
+    padding: 0 0.5rem;
     justify-content: space-between;
+    position: relative;
 }
 .titlebar {
     margin-left: 1.5rem;
@@ -41,6 +44,7 @@ body {
 #searchbuttons a:active {
     background-color:hsl(200, 26%, 40%);
 }
+
 .searchdiv {
     color: inherit;
     display: flex;
@@ -130,9 +134,12 @@ body {
     text-decoration: none;
 }
 
-@media (max-width:430px) {
+@media (max-width:620px) {
     .result-item {
         width: 100%;
+    }
+    .navbar {
+        height: 6rem;
     }
     .searchtitle {
         font-size: 2rem;
