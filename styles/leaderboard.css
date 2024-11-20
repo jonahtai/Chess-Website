@@ -1,0 +1,23 @@
+.leaderboard table,th,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.leaderboard {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.leaderboard th, td {
+    padding: 1rem 0;
+}
+
+.leaderboard td.centered {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.leaderboard td {
+    padding-left: 0.5rem;
+}
