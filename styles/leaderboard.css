@@ -9,7 +9,7 @@
     padding: 1rem;
 }
 
-.leaderboard th, td {
+.leaderboard th {
     padding: 1rem 0;
 }
 
@@ -19,5 +19,5 @@
 }
 
 .leaderboard td {
-    padding-left: 0.5rem;
+    padding: 1rem 0.5rem;
 }

@@ -39,3 +39,9 @@ p {
     padding: 0;
     margin: 0;
 }
+
+@media (max-width:620px) {
+    .section {
+        margin-top: 2rem;
+    }
+}
