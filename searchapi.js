@@ -34,11 +34,10 @@ function displayResults(results) {
             div.className = 'result-item';
 
             div.innerHTML = `
-                <div class="name">${item.name}</div>
-                <div class="school">${item.school}</div>
-                <div class="uscfid">${item.uscfid}</div>
-                <div class="rating">${item.rating}</div>
-                <div class="link">${item.link}</div>
+                <div class="name"><a href="${item.link}" target="_blank">${item.name}</a></div>
+                <div class="school">School: ${item.school}</div>
+                <div class="uscfid">USCF ID: ${item.uscfid}</div>
+                <div class="rating">Rating: ${item.rating}</div>
                 `
             resultsDiv.appendChild(div);
         });
