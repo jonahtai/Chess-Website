@@ -22,8 +22,8 @@ def search():
     
     cursor.execute("""
     SELECT name, school, uscfid, rating, link FROM names
-    WHERE name LIKE ?
-    """, ('%' + query + '%',))
+    WHERE name LIKE ? or name LIKE ?
+    """, (query + '%', "% " + query + "%"))
 
     results = cursor.fetchall()
     conn.close()
@@ -33,3 +33,4 @@ def search():
 if __name__ == '__main__':
     print("Running in directory:" + os.getcwd()) 
     app.run(port=8000)    
+
