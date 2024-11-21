@@ -30,7 +30,25 @@ def search():
 
     response = [{'name': row['name'], 'school': row['school'], 'uscfid': row['uscfid'], 'rating': row['rating'], 'link': row['link']} for row in results]
     return jsonify(response)
+
+@app.route("/api/leaderboard", methods=["GET"])
+def leaderboard():
+    schools = request.args.get("schools", "").lower()
+    minRating = request.args.get("minRating", "")
+    maxRating = request.args.get("maxRating", "")
+    page = request.args.get("pageNo", "1") # still not sure if we should implement this
+
+    conn = db_connect()
+    cursor = conn.cursor()
+
+    if not schools and minRating and maxRating:
+        cursor.execute("""
+        SELECT name, school, rating FROM names
+        WHERE
+        LIMIT 10
+        """)
+    return nothing
+
 if __name__ == '__main__':
     print("Running in directory:" + os.getcwd()) 
-    app.run(port=8000)    
-
+    app.run(port=8000)
