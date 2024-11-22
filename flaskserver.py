@@ -34,20 +34,24 @@ def search():
 @app.route("/api/leaderboard", methods=["GET"])
 def leaderboard():
     schools = request.args.get("schools", "").lower()
-    minRating = request.args.get("minRating", "")
-    maxRating = request.args.get("maxRating", "")
-    page = request.args.get("pageNo", "1") # still not sure if we should implement this
-
+    minRating = request.args.get("minRating", "0")
+    maxRating = request.args.get("maxRating", "3000")
+    # page = request.args.get("pageNo", "1")  still not sure if we should implement this
     conn = db_connect()
     cursor = conn.cursor()
-
-    if not schools and minRating and maxRating:
+    print(minRating, maxRating)
+    if not (schools):
         cursor.execute("""
         SELECT name, school, rating FROM names
-        WHERE
+        WHERE ? >= rating >= ?
+        ORDER BY rating DESC
         LIMIT 10
-        """)
-    return nothing
+        """, (str(maxRating), str(minRating)))
+        results = cursor.fetchall()
+        conn.close()
+        return jsonify([dict(row) for row in results])
+    
+    
 
 if __name__ == '__main__':
     print("Running in directory:" + os.getcwd()) 
