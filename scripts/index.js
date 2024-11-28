@@ -6,3 +6,8 @@ function toggleMenu() {
     searchbuttons.classList.toggle('active');
     hamburger.classList.toggle('active');
 }
+
+function toggleDropdown() {
+    const dropdown = document.getElementById('dropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}

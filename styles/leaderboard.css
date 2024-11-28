@@ -6,7 +6,12 @@
 .leaderboard {
     display: flex;
     justify-content: center;
-    padding: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+#leaderboard {
+    width: 60%;
 }
 
 .leaderboard th {
@@ -20,4 +25,45 @@
 
 .leaderboard td {
     padding: 1rem 0.5rem;
+}
+
+.filter {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+}
+
+#filterbar {
+    border: 1px solid blue;
+    display: flex;
+    width: 60%;
+    justify-content: center;
+}
+
+.schools button{
+    background-color: var(--mid);
+    color: var(--bright);
+    padding: 1rem;
+    border: none;
+    border-radius: 0.2rem;
+    cursor: pointer;
+}
+
+.schools-dropdown {
+    display: none;
+    position: absolute;
+    background-color: var(--mid);
+    border-radius: 1rem;
+    padding: 1rem 0;
+    z-index: 1;
+}
+
+.schools-dropdown a {
+    display: block;
+    color: var(--bright);
+    text-decoration: none;
 }
