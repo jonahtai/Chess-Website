@@ -38,10 +38,16 @@
 }
 
 #filterbar {
+    padding: 0.5rem 0;
     border: 1px solid blue;
     display: flex;
     width: 60%;
     justify-content: center;
+    align-items: center;
+}
+
+.schools {
+    position: relative;
 }
 
 .schools button{
@@ -49,21 +55,51 @@
     color: var(--bright);
     padding: 1rem;
     border: none;
-    border-radius: 0.2rem;
+    border-radius: 0.3rem;
     cursor: pointer;
+    transition: background 100ms;
+    line-height: 1.5;
+}
+
+.schools button:hover {
+    background-color: hsl(202, 17%, 50%);
 }
 
 .schools-dropdown {
     display: none;
     position: absolute;
+    top: calc(100% + 0.2rem);
+    left: 50%;
+    transform: translateX(-50%);
     background-color: var(--mid);
     border-radius: 1rem;
-    padding: 1rem 0;
+    padding: 1rem 0.75rem;
     z-index: 1;
+    white-space: nowrap;
+    width: max-content;
 }
 
 .schools-dropdown a {
     display: block;
     color: var(--bright);
     text-decoration: none;
+    transition: color 150ms;
+}
+
+.schools-dropdown a:hover {
+    color: var(--red);
+    font-weight: bold;
+}
+
+.ratinginput {
+    display: relative;
+    padding: 1rem 0.7rem;
+    font-family: inherit;
+    font-size: 1rem;
+    margin: 0;
+    border: none;
+    border-radius: 0.3rem;
+    appearance: none;
+    box-sizing: border-box;
+    line-height: 1.5;
 }

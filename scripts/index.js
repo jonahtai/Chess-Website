@@ -10,4 +10,5 @@ function toggleMenu() {
 function toggleDropdown() {
     const dropdown = document.getElementById('dropdown');
     dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    // dropdown.style.opacity = dropdown.style.display === '1' ? '0' : '1';  maybe fix this johnson later
 }
