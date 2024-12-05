@@ -91,7 +91,12 @@
     font-weight: bold;
 }
 
+.minrating, .maxrating {
+    width: 30%;
+}
+
 .ratinginput {
+    width: 100%;
     display: relative;
     padding: 1rem 0.7rem;
     font-family: inherit;
