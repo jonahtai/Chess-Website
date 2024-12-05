@@ -13,13 +13,16 @@ async function search() {
     }
 
     debounceTimeout = setTimeout(async() => {
-        const response = await fetch(`http://127.0.0.1:8000/api/search?query=${encodeURIComponent(query)}`);
-
-        if (response.ok) {
-            const data = await response.json();
-            displayResults(data);
-        } else {
-            document.getElementById('searchresults').innerHTML = '<div class="result-item" style="flex:1;">Error fetching API</div>';
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/api/search?query=${encodeURIComponent(query)}`);
+            if (response.ok) {
+                const data = await response.json();
+                displayResults(data);
+            } else {
+            document.getElementById('searchresults').innerHTML = `<div class="result-item" style="flex:1;">Error fetching API: ${response.status} ${response.statusText}</div>`;
+            } 
+        } catch (error) {
+            document.getElementById('searchresults').innerHTML = '<div class="result-item" style="flex:1;">Error contacting server</div>';
         }
     }, 400);
 }
