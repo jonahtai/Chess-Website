@@ -38,6 +38,7 @@
 .filters {
     display: flex;
     justify-content: center;
+    padding-bottom: 1rem;
 }
 
 #filterbar {
@@ -109,4 +110,39 @@
     appearance: none;
     box-sizing: border-box;
     line-height: 1.5;
+}
+
+.filtercontainer {
+    display: flex;
+    justify-content: center;
+}
+
+#filtercontainer {
+    display: inline-flex;
+    width: 60%;
+    gap: 0.5rem;
+}
+
+.filterchip {
+    display: inline-flex;
+    padding: 0.4rem 0.6rem;
+    color: var(--bright);
+    border-radius: 0.7rem;
+    background-color: var(--mid);
+    gap: 0.4rem;
+}
+
+.idbutton {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--bright);
+    cursor:pointer;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    transition: color 150ms;
+}
+
+.idbutton:hover {
+    color: var(--red);
 }

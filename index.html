@@ -52,27 +52,29 @@
             <div class="filter schools">
                 <button onclick="toggleDropdown()" style="font-size: 1rem;"><strong>Schools</strong></button>
                 <div class="schools-dropdown" id="dropdown">
-                    <a href="#">Central HS</a>
-                    <a href="#">Masterman HS</a>
-                    <a href="#">Carver HS</a>
-                    <a href="#">Palumbo</a>
-                    <a href="#">Lincoln HS</a>
-                    <a href="#">George Washington HS</a>
-                    <a href="#">Northeast HS</a>
+                    <a href="#" onclick="updateSchool('Central HS')">Central HS</a>
+                    <a href="#" onclick="updateSchool('Masterman HS')">Masterman HS</a>
+                    <a href="#" onclick="updateSchool('Carver HS')">Carver HS</a>
+                    <a href="#" onclick="updateSchool('Palumbo HS')">Palumbo HS</a>
+                    <a href="#" onclick="updateSchool('Lincoln HS')">Lincoln HS</a>
+                    <a href="#" onclick="updateSchool('George Washington HS')">George Washington HS</a>
+                    <a href="#" onclick="updateSchool('Northeast HS')">Northeast HS</a>
                 </div>
             </div>
-            <div class="filter minrating">
+            <div class="filter minrating" id="minrating">
                 <input type="number" class="ratinginput" placeholder="Minimum Rating">
             </div>
             <div class="filter maxrating">
                 <input type="number" class="ratinginput" placeholder="Maximum Rating">
             </div>
             <div class="applybutton filter schools">
-                <button style="font-size: 1rem;"><strong>Apply</strong></button>
+                <button style="font-size: 1rem;" onclick="getLeaderboard()"><strong>Apply</strong></button>
             </div>
         </nav>
     </div>
-    <div class="filtercontainer" id="filtercontainer">
+    <div class="filtercontainer container">
+        <div id="filtercontainer">
+        </div>
     </div>
     <div class="container leaderboard">
         <table id="leaderboard">

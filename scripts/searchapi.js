@@ -46,6 +46,7 @@ function displayResults(results) {
     }
 }
 
-function getLeaderboard(filters) {
-    
+function getLeaderboard() {
+    const minimumRating = document.getElementById("minrating").value.replace(/\D/g,'');
+    const maximumRating = document.getElementById("maxrating").value.replace(/\D/g,'');
 }

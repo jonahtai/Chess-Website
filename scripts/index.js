@@ -1,3 +1,5 @@
+var schools = []
+
 function toggleMenu() {
     const searchbuttons = document.getElementById('searchbuttons');
     const hamburger = document.getElementById('hamburger');
@@ -11,4 +13,31 @@ function toggleDropdown() {
     const dropdown = document.getElementById('dropdown');
     dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
     // dropdown.style.opacity = dropdown.style.display === '1' ? '0' : '1';  maybe fix this johnson later
+}
+
+function updateSchool(school) {
+    let index = schools.indexOf(school);
+    if (index === -1) {
+        schools.push(school);
+    } else {
+        schools.splice(index, 1);
+    }
+    updateFilters();
+}
+
+function updateFilters() {
+    const filterlist = document.getElementById('filtercontainer');
+    var filterlistHTML = '';
+    console.log(schools);
+    for (const school of schools) {
+        console.log(school)
+        filterlistHTML += `<div class="filterchip">${school}<button onclick="removeFilter(this)"class="idbutton"><strong>x</strong></button></div>`;
+    }
+    console.log("filterlistHTml: " + filterlistHTML);
+    filterlist.innerHTML = filterlistHTML;
+}
+
+function removeFilter(button) {
+    const chip = button.parentElement;
+    chip.remove();
 }
