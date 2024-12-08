@@ -41,8 +41,7 @@
 }
 
 #filterbar {
-    padding: 0.5rem 0;
-    border: 1px solid blue;
+    padding: 0;
     display: flex;
     width: 60%;
     justify-content: center;
