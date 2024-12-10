@@ -38,6 +38,8 @@ function updateFilters() {
 }
 
 function removeFilter(button) {
+    let index = schools.indexOf(button.parentElement.textContent - 'x')
     const chip = button.parentElement;
+    schools.splice(index, 1)
     chip.remove();
 }
