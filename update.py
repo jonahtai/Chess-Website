@@ -1,9 +1,7 @@
 import sqlite3
 from bs4 import BeautifulSoup
 import requests
-
-conn = sqlite3.connect('players.db')
-cursor = conn.cursor()
+import time
 
 #CODE BY SOHAIL AJI
 def getRating(url):
@@ -30,12 +28,18 @@ def getRating(url):
     rating_regular = int(rating_regular)
     return(rating_regular)
 
-cursor.execute("SELECT id, link FROM names")
-rows = cursor.fetchall()
+if __name__ == "__main__":
+    start = time.perf_counter()
+    conn = sqlite3.connect('players.db')
+    cursor = conn.cursor()
 
-for row in rows:
-    row_id, url = row
-    new_rating = getRating(url)
-    cursor.execute("UPDATE names SET rating = ? where id = ?", (new_rating, row_id))
-conn.commit()
-print("pp")
+    cursor.execute("SELECT id, link FROM names")
+    rows = cursor.fetchall()
+    for row in rows:
+        row_id, url = row
+        new_rating = getRating(url)
+        cursor.execute("UPDATE names SET rating = ? where id = ?", (new_rating, row_id))
+    conn.commit()
+    print("pp")
+    end = time.perf_counter()
+    print(f"Database updated in : {end-start} seconds")
