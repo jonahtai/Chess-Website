@@ -44,7 +44,7 @@ def leaderboard():
     cursor = conn.cursor()
     if schools == ['']:
         cursor.execute("""
-        SELECT name, school, rating FROM names
+        SELECT name, school, rating, link FROM names
         WHERE rating BETWEEN ? AND ?
         ORDER BY rating DESC
         LIMIT 10

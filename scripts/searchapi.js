@@ -86,7 +86,7 @@ function displayTable(data) {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td class="centered">${i}</td>
-                <td>${item.name}</td>
+                <td><a href="${item.link}" target="_blank" style="text-decoration: none;"><strong>${item.name}</strong></a></td>
                 <td>${item.school}</td>
                 <td class="centered">${item.rating}</td>
             `
