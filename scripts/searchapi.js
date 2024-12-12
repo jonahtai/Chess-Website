@@ -52,16 +52,43 @@ async function getLeaderboard() {
     const maximumRating = document.getElementById("maxrating").value || MAX;
     const minimumRating = document.getElementById("minrating").value || MIN;
     const schools = window.schools;
+    const table = document.getElementById("leaderboard");
 
-    console.log(schools);
-    console.log(minimumRating);
-    console.log(maximumRating);
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/api/leaderboard?schools=${encodeURIComponent(schools)}&minRating=${encodeURIComponent(minimumRating)}&maxRating=${encodeURIComponent(maximumRating)}`);
+        if (response.ok) {
+            const lbdata = await response.json();
+            displayTable(lbdata);
+        } else {
+            console.log(response.status);
+        }
+    } catch (error) {
+        table.innerHTML = 'ERROR CONTACTING SERVER';
+    }
+}
+function displayTable(data) {
+    const table = document.getElementById("leaderboard");
+    table.innerHTML = `
+            <tr>
+                <th style='width: 4rem;'>Rank</th>
+                <th style='width: 20rem;'>Player</th>
+                <th style='width: 20rem;'>School</th>
+                <th style='width: 8rem;'>Rating</th>
+            </tr>
+            `
 
-    const response = await fetch(`http://127.0.0.1:8000/api/leaderboard?schools=${encodeURIComponent(schools)}&minRating=${encodeURIComponent(minimumRating)}&maxRating=${encodeURIComponent(maximumRating)}`);
-    if (response.ok) {
-        const lbdata = await response.json();
-        console.log(lbdata);
-    } else {
-        console.log(response.status);
+    if (data.length > 0) {
+        let i = 1;
+        data.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="centered">${i}</td>
+                <td>${item.name}</td>
+                <td>${item.school}</td>
+                <td class="centered">${item.rating}</td>
+            `
+            i++;
+            table.appendChild(row);
+        });
     }
 }
