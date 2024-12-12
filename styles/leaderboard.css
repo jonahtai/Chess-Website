@@ -114,6 +114,14 @@
     appearance: none;
     box-sizing: border-box;
     line-height: 1.5;
+    transition: background 150ms;
+}
+
+.ratinginput:focus-within {
+    background-color: hsl(240, 29%, 94%);
+    box-shadow: 0 0 0.2rem hsl(202, 17%, 42%);;
+    outline: none;
+    caret-color: var(--dark);
 }
 
 .filtercontainer {

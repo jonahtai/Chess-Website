@@ -64,10 +64,10 @@
                 </div>
             </div>
             <div class="filter minrating">
-                <input id="minrating" type="number" class="ratinginput" placeholder="Minimum Rating" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                <input id="minrating" type="number" class="ratinginput" placeholder="Minimum Rating" step="50" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
             </div>
             <div class="filter maxrating">
-                <input id="maxrating" type="number" class="ratinginput" placeholder="Maximum Rating" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                <input id="maxrating" type="number" class="ratinginput" placeholder="Maximum Rating" step="50" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
             </div>
             <div class="applybutton filter schools">
                 <button style="font-size: 1rem;" onclick="getLeaderboard()"><strong>Apply</strong></button>
