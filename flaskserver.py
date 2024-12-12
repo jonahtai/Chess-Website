@@ -22,8 +22,9 @@ def search():
     
     cursor.execute("""
     SELECT name, school, uscfid, rating, link FROM names
-    WHERE name LIKE ?
-    """, ('%' + query + '%',))
+    WHERE name LIKE ? or name LIKE ? 
+    ORDER BY firstname ASC, lastname ASC;
+    """, (query + '%', "% " + query + "%"))
 
     results = cursor.fetchall()
     conn.close()
