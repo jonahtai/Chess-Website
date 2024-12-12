@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/util.css">
     <link rel="stylesheet" href="styles/hamburger.css">
+    <link rel="stylesheet" href="styles/leaderboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -39,7 +40,7 @@
             <button class="submitbutton" onclick="search()">
                 <i class="fa fa-search"></i>
             </button>
-            <input id="search-input" class="search-input" placeholder="Search..." oninput="search()" autocomplete="off" on>
+            <input id="search-input" class="search-input" placeholder="Search..." oninput="search()" autocomplete="off">
         </form>
     </div>
     <div class="section"></div>
@@ -47,8 +48,49 @@
         <div id="searchresults">
         </div>
     </div>
-    
+    <div class="section"></div>
+    <div class="container filters">
+        <nav id="filterbar">
+            <div class="filter schools">
+                <button onclick="toggleDropdown()" style="font-size: 1rem;"><strong>Schools</strong></button>
+                <div class="schools-dropdown" id="dropdown">
+                    <a href="#" onclick="updateSchool('Central HS')">Central HS</a>
+                    <a href="#" onclick="updateSchool('Masterman HS')">Masterman HS</a>
+                    <a href="#" onclick="updateSchool('Carver HS')">Carver HS</a>
+                    <a href="#" onclick="updateSchool('Palumbo')">Palumbo</a>
+                    <a href="#" onclick="updateSchool('Lincoln HS')">Lincoln HS</a>
+                    <a href="#" onclick="updateSchool('George Washington HS')">George Washington HS</a>
+                    <a href="#" onclick="updateSchool('Northeast HS')">Northeast HS</a>
+                </div>
+            </div>
+            <div class="filter minrating">
+                <input id="minrating" type="number" class="ratinginput" placeholder="Minimum Rating" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+            </div>
+            <div class="filter maxrating">
+                <input id="maxrating" type="number" class="ratinginput" placeholder="Maximum Rating" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+            </div>
+            <div class="applybutton filter schools">
+                <button style="font-size: 1rem;" onclick="getLeaderboard()"><strong>Apply</strong></button>
+            </div>
+        </nav>
+    </div>
+    <div class="filtercontainer container">
+        <div id="filtercontainer">
+        </div>
+    </div>
+    <div class="container leaderboard">
+        <table id="leaderboard">
+            <tr>
+                <th style="width: 4rem;">Rank</th>
+                <th style="width: 20rem;">Player</th>
+                <th style="width: 20rem;">School</th>
+                <th style="width: 8rem;">Rating</th>
+            </tr>
+        </table>
+    </div>
 </body>
-<script src="searchapi.js"></script>
-<script src="index.js"></script>
+<script src="scripts/index.js"></script>
+<script src="scripts/searchapi.js"></script>
 </html>
+
+<!-- we should implement a notation sheet scanner -->

@@ -4,7 +4,7 @@
     --mid: #586F7C;
     --bright: #ddebea;
     --white: #F4F4F9;
-    --red: #c54b4b;
+    --red: #e35858;
 }
 
 html {
@@ -38,4 +38,10 @@ a {
 p {
     padding: 0;
     margin: 0;
+}
+
+@media (max-width:620px) {
+    .section {
+        margin-top: 2rem;
+    }
 }

@@ -1,0 +1,152 @@
+.leaderboard table,th,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.leaderboard {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+#leaderboard {
+    width: 60%;
+}
+
+.leaderboard th {
+    padding: 1rem 0;
+}
+
+.leaderboard td.centered {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.leaderboard td {
+    padding: 1rem 0.7rem;
+}
+
+.filter {
+    margin-left: 1rem;
+}
+
+.filter:last-child {
+    margin-right: 1rem;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+}
+
+#filterbar {
+    padding: 0;
+    display: flex;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+}
+
+.schools {
+    position: relative;
+}
+
+.schools button{
+    background-color: var(--mid);
+    color: var(--bright);
+    padding: 1rem;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background 100ms;
+    line-height: 1.5;
+}
+
+.schools button:hover {
+    background-color: hsl(202, 17%, 50%);
+}
+
+.schools button:active {
+    background-color: hsl(202, 17%, 55%);
+}
+
+.schools-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.2rem);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--mid);
+    border-radius: 1rem;
+    padding: 1rem 0.75rem;
+    z-index: 1;
+    white-space: nowrap;
+    width: max-content;
+}
+
+.schools-dropdown a {
+    display: block;
+    color: var(--bright);
+    text-decoration: none;
+    transition: color 150ms;
+}
+
+.schools-dropdown a:hover {
+    color: var(--red);
+    font-weight: bold;
+}
+
+.minrating, .maxrating {
+    width: 30%;
+}
+
+.ratinginput {
+    width: 100%;
+    display: relative;
+    padding: 1rem 0.7rem;
+    font-family: inherit;
+    font-size: 1rem;
+    margin: 0;
+    border: none;
+    border-radius: 0.3rem;
+    appearance: none;
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+.filtercontainer {
+    display: flex;
+    justify-content: center;
+}
+
+#filtercontainer {
+    display: inline-flex;
+    width: 60%;
+    gap: 0.5rem;
+}
+
+.filterchip {
+    display: inline-flex;
+    padding: 0.4rem 0.6rem;
+    color: var(--bright);
+    border-radius: 0.7rem;
+    background-color: var(--mid);
+    gap: 0.4rem;
+}
+
+.idbutton {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--bright);
+    cursor:pointer;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    transition: color 150ms;
+}
+
+.idbutton:hover {
+    color: var(--red);
+}

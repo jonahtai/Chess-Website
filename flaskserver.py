@@ -31,7 +31,36 @@ def search():
 
     response = [{'name': row['name'], 'school': row['school'], 'uscfid': row['uscfid'], 'rating': row['rating'], 'link': row['link']} for row in results]
     return jsonify(response)
+
+@app.route("/api/leaderboard", methods=["GET"])
+def leaderboard():
+    schools = request.args.get("schools", "")
+    schools = schools.split(',')
+    minRating = request.args.get("minRating", "0")
+    maxRating = request.args.get("maxRating", "3000")
+    # page = request.args.get("pageNo", "1")  still not sure if we should implement this
+    print(f"Schools: {schools}")
+    conn = db_connect()
+    cursor = conn.cursor()
+    if schools == ['']:
+        cursor.execute("""
+        SELECT name, school, rating FROM names
+        WHERE rating BETWEEN ? AND ?
+        ORDER BY rating DESC
+        LIMIT 10
+        """, (minRating, maxRating))
+        results = cursor.fetchall()
+        conn.close()
+        return jsonify([dict(row) for row in results])
+    
+    placeholders = ",".join("?" for _ in schools)  # Creates ?,?,?
+    query = f"SELECT name, school, rating FROM names WHERE school IN ({placeholders}) AND RATING BETWEEN ? AND ? ORDER BY rating DESC LIMIT 10"
+    cursor.execute(query, schools + [minRating, maxRating])
+    results = cursor.fetchall()
+    conn.close
+    return jsonify([dict(row) for row in results])
+    
+
 if __name__ == '__main__':
     print("Running in directory:" + os.getcwd()) 
-    app.run(port=8000)    
-
+    app.run(port=8000)
