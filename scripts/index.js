@@ -1,4 +1,4 @@
-var schools = []
+window.schools = [];
 
 function toggleMenu() {
     const searchbuttons = document.getElementById('searchbuttons');
@@ -28,12 +28,9 @@ function updateSchool(school) {
 function updateFilters() {
     const filterlist = document.getElementById('filtercontainer');
     var filterlistHTML = '';
-    console.log(schools);
     for (const school of schools) {
-        console.log(school)
         filterlistHTML += `<div class="filterchip">${school}<button onclick="removeFilter(this)"class="idbutton"><strong>x</strong></button></div>`;
     }
-    console.log("filterlistHTml: " + filterlistHTML);
     filterlist.innerHTML = filterlistHTML;
 }
 

@@ -47,6 +47,15 @@ function displayResults(results) {
 }
 
 function getLeaderboard() {
-    const minimumRating = document.getElementById("minrating").value.replace(/\D/g,'');
-    const maximumRating = document.getElementById("maxrating").value.replace(/\D/g,'');
+    const MIN = 0;
+    const MAX = 3000;
+    const maximumRating = document.getElementById("maxrating").value.trim() || MAX;
+    const minimumRating = document.getElementById("minrating").value.trim() || MIN;
+    maximumRating = parseInt(maximumRating.replace(/[^0-9]/g,''));
+    minimumRating = parseInt(minimumRating.replace(/[^0-9]/g,''));
+
+    const schools = window.schools;
+    console.log(schools);
+    console.log(minimumRating);
+    console.log(maximumRating);
 }
