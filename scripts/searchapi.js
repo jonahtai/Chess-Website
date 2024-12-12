@@ -46,16 +46,22 @@ function displayResults(results) {
     }
 }
 
-function getLeaderboard() {
+async function getLeaderboard() {
     const MIN = 0;
     const MAX = 3000;
-    const maximumRating = document.getElementById("maxrating").value.trim() || MAX;
-    const minimumRating = document.getElementById("minrating").value.trim() || MIN;
-    maximumRating = parseInt(maximumRating.replace(/[^0-9]/g,''));
-    minimumRating = parseInt(minimumRating.replace(/[^0-9]/g,''));
-
+    const maximumRating = document.getElementById("maxrating").value || MAX;
+    const minimumRating = document.getElementById("minrating").value || MIN;
     const schools = window.schools;
+
     console.log(schools);
     console.log(minimumRating);
     console.log(maximumRating);
+
+    const response = await fetch(`http://127.0.0.1:8000/api/leaderboard?schools=${encodeURIComponent(schools)}&minRating=${encodeURIComponent(minimumRating)}&maxRating=${encodeURIComponent(maximumRating)}`);
+    if (response.ok) {
+        const lbdata = await response.json();
+        console.log(lbdata);
+    } else {
+        console.log(response.status);
+    }
 }

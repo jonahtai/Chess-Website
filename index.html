@@ -55,17 +55,17 @@
                     <a href="#" onclick="updateSchool('Central HS')">Central HS</a>
                     <a href="#" onclick="updateSchool('Masterman HS')">Masterman HS</a>
                     <a href="#" onclick="updateSchool('Carver HS')">Carver HS</a>
-                    <a href="#" onclick="updateSchool('Palumbo HS')">Palumbo HS</a>
+                    <a href="#" onclick="updateSchool('Palumbo')">Palumbo</a>
                     <a href="#" onclick="updateSchool('Lincoln HS')">Lincoln HS</a>
                     <a href="#" onclick="updateSchool('George Washington HS')">George Washington HS</a>
                     <a href="#" onclick="updateSchool('Northeast HS')">Northeast HS</a>
                 </div>
             </div>
             <div class="filter minrating">
-                <input id="minrating" type="number" class="ratinginput" placeholder="Minimum Rating">
+                <input id="minrating" type="number" class="ratinginput" placeholder="Minimum Rating" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
             </div>
             <div class="filter maxrating">
-                <input id="maxrating" type="number" class="ratinginput" placeholder="Maximum Rating">
+                <input id="maxrating" type="number" class="ratinginput" placeholder="Maximum Rating" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
             </div>
             <div class="applybutton filter schools">
                 <button style="font-size: 1rem;" onclick="getLeaderboard()"><strong>Apply</strong></button>

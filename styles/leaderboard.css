@@ -68,6 +68,10 @@
     background-color: hsl(202, 17%, 50%);
 }
 
+.schools button:active {
+    background-color: hsl(202, 17%, 55%);
+}
+
 .schools-dropdown {
     display: none;
     position: absolute;

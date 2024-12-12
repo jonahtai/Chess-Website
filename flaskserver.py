@@ -38,10 +38,10 @@ def leaderboard():
     minRating = request.args.get("minRating", "0")
     maxRating = request.args.get("maxRating", "3000")
     # page = request.args.get("pageNo", "1")  still not sure if we should implement this
-
+    print(f"Schools: {schools}")
     conn = db_connect()
     cursor = conn.cursor()
-    if not (schools):
+    if schools == ['']:
         cursor.execute("""
         SELECT name, school, rating FROM names
         WHERE rating BETWEEN ? AND ?
