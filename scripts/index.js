@@ -1,5 +1,10 @@
 window.schools = [];
 
+function hasFocusWithin(element) {
+    const activeElement = document.activeElement;
+    return element.contains(activeElement);
+}
+
 function toggleMenu() {
     const searchbuttons = document.getElementById('searchbuttons');
     const hamburger = document.getElementById('hamburger');
@@ -11,8 +16,17 @@ function toggleMenu() {
 
 function toggleDropdown() {
     const dropdown = document.getElementById('dropdown');
-    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    if (hasFocusWithin(dropdown)) {
+        dropdown.blur();
+    } else {
+        dropdown.focus();
+    }
     // dropdown.style.opacity = dropdown.style.display === '1' ? '0' : '1';  maybe fix this johnson later
+}
+
+function closeDropdown() {
+    const dropdown = document.getElementById('dropdown');
+    dropdown.style.display = 'none';
 }
 
 function updateSchool(school) {

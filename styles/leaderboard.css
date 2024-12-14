@@ -2,7 +2,7 @@
     color: var(--semidark);
     text-align: center;
     font-size: 1.5rem;
-    
+
 }
 
 .leaderboard table,th,td{
@@ -67,8 +67,9 @@
     border: none;
     border-radius: 0.3rem;
     cursor: pointer;
-    transition: background 100ms;
+    transition: background-color 100ms;
     line-height: 1.5;
+    min-width: 6rem;
 }
 
 .schools button:hover {
@@ -103,6 +104,10 @@
 .schools-dropdown a:hover {
     color: var(--red);
     font-weight: bold;
+}
+
+.schools:focus-within {
+    display: block;
 }
 
 .minrating, .maxrating {
