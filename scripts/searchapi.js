@@ -73,7 +73,7 @@ function displayTable(data) {
     const table = document.getElementById("leaderboard");
     table.innerHTML = `
             <tr>
-                <th style='width: 4rem;'>Rank</th>
+                <th style='width: 8rem;'>Rank</th>
                 <th style='width: 20rem;'>Player</th>
                 <th style='width: 20rem;'>School</th>
                 <th style='width: 8rem;'>Rating</th>
