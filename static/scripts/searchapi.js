@@ -14,7 +14,7 @@ async function search() {
 
     debounceTimeout = setTimeout(async() => {
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/search?query=${encodeURIComponent(query)}`);
+            const response = await fetch(`http://http://143.47.99.139/:8000/api/search?query=${encodeURIComponent(query)}`);
             if (response.ok) {
                 const data = await response.json();
                 displayResults(data);
@@ -58,7 +58,7 @@ async function getLeaderboard() {
     const table = document.getElementById("leaderboard");
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/api/leaderboard?schools=${encodeURIComponent(schools)}&minRating=${encodeURIComponent(minimumRating)}&maxRating=${encodeURIComponent(maximumRating)}`);
+        const response = await fetch(`http://http://143.47.99.139/:8000/api/leaderboard?schools=${encodeURIComponent(schools)}&minRating=${encodeURIComponent(minimumRating)}&maxRating=${encodeURIComponent(maximumRating)}`);
         if (response.ok) {
             const lbdata = await response.json();
             displayTable(lbdata);
