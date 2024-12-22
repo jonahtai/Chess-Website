@@ -7,3 +7,4 @@ database.py
 info.py
 __pycache__
 python testing
+*.key
