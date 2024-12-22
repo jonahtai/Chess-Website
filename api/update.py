@@ -30,7 +30,7 @@ def getRating(url):
 
 if __name__ == "__main__":
     start = time.perf_counter()
-    conn = sqlite3.connect('players.db')
+    conn = sqlite3.connect('../players.db')
     cursor = conn.cursor()
 
     cursor.execute("SELECT id, link FROM names")
