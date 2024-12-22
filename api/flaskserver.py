@@ -7,7 +7,7 @@ app = Flask(__name__)
 cors = CORS(app)
 
 def db_connect():
-    conn = sqlite3.connect('players.db')
+    conn = sqlite3.connect('../players.db')
     conn.row_factory = sqlite3.Row
     return conn
 
