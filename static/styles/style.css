@@ -134,7 +134,7 @@ body {
     text-decoration: none;
 }
 
-@media (max-width:620px) {
+@media (max-width:635px) {
     .result-item {
         width: 100%;
     }
@@ -149,9 +149,14 @@ body {
     }
     .titlebar {
         margin-left: 0.5rem;
-        font-size: 0.7rem;
     }
     :root {
         font-size: 10px;
+    }
+}
+
+@media (max-width:400px) {
+    .searchtitle {
+        font-size: 1.5rem;
     }
 }

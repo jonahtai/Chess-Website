@@ -46,6 +46,7 @@
     display: flex;
     justify-content: center;
     padding-bottom: 1rem;
+    padding-top: 1rem;
 }
 
 #filterbar {
@@ -169,4 +170,22 @@
 
 .idbutton:hover {
     color: var(--red);
+}
+
+@media (max-width:1000px) {
+    #filterbar {
+        width: 80%;
+    }
+    #leaderboard {
+        width: 80%;
+    }
+}
+
+@media (max-width:620px) {
+    #filterbar {
+        width: 90%;
+    }
+    #leaderboard {
+        width: 90%;
+    }
 }
