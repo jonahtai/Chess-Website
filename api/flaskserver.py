@@ -61,6 +61,8 @@ def leaderboard():
     return jsonify([dict(row) for row in results])
     
 
+
 if __name__ == '__main__':
     print("Running in directory:" + os.getcwd()) 
     app.run(port=8000)
+

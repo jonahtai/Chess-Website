@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add new player</title>
+    <link rel="stylesheet" href="styles/update.css">
+</head>
+<body>
+    <form id="loginform" onsubmit="return false">
+        <h1>Login:</h1>
+        <input type="text" placeholder="Username">
+        <input type="text" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </form>
+    <form id="updateform" style="display: none;">
+        <h1>Add New Player</h1>
+        <p>First and last name</p>
+        <input type="text" placeholder="First name">
+        <input type="text" placeholder="Last name">
+        <p>USCF ID</p>
+        <input type="text" placeholder="ID">
+        <p>School</p>
+        <select id="schoolselector">
+            <option value="" disabled selected>Choose a school</option>
+            <option value="Masterman HS">Masterman HS</option>
+            <option value="Central HS">Central HS</option>
+            <option value="Palumbo">Palumbo</option>
+            <option value="Carver HS">Carver HS</option>
+            <option value="Lincoln HS">Lincoln HS</option>
+            <option value="George Washington HS">George Washington HS</option>
+            <option value="Northeast HS">Northeast HS</option>
+        </select>
+        <br>
+        <button style="margin-top: 1rem;">
+            Submit
+        </button>
+    </form>
+</body>
+<script src="scripts/loginshit.js"></script>
+</html>
