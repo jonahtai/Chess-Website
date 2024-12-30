@@ -1,10 +1,10 @@
 # ignore database files
-.db
+*.db
 
 database_init.py
-players.db
 database.py
 info.py
 __pycache__
 python testing
 *.key
+keys.py

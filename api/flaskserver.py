@@ -1,10 +1,19 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, session
+from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 import sqlite3
 import os
+import secrets
+import hashlib
+import keys
 
 app = Flask(__name__)
 cors = CORS(app)
+bcrypt = Bcrypt(app)
+
+app.secret_key = keys.secret_key
+
+challenges = {}
 
 def db_connect():
     conn = sqlite3.connect('../players.db')
@@ -59,8 +68,45 @@ def leaderboard():
     results = cursor.fetchall()
     conn.close
     return jsonify([dict(row) for row in results])
-    
 
+@app.route('/api/secure/challenge', methods=['POST'])
+def get_challenge():
+    data = request.json
+    username = data.get('username')
+
+    challenge = secrets.token_hex(16)
+    challenges[username] = challenge
+    print(challenges)
+    return jsonify({"challenge": challenge}), 200
+
+@app.route('/api/secure/login', methods=["POST"])
+def login():
+    data = request.json
+    username = data.get('username')
+    client_response = data.get('response')
+
+    if username not in challenges:
+        return jsonify({"message": "Invalid Challenge"}), 401
+    
+    challenge = challenges.pop(username)
+    
+    with sqlite3.connect('../users.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute('SELECT password FROM users WHERE username = ?', (username,))
+        user = cursor.fetchone()
+
+        if user:
+            stored_password_hash = user[0]
+            expected_hash = hashlib.sha256((stored_password_hash + challenge).encode()).hexdigest()
+            if client_response == expected_hash:
+                session['username'] = username
+                return jsonify({"message": "Login Successful"}), 200
+    return jsonify({"message": "Invalid Credentials"}), 401
+
+@app.route('/api/secure/logout', methods=['POST'])
+def logout():
+    session.pop('username', None)
+    return jsonify({"message": "Logged out successfully"}), 200
 
 if __name__ == '__main__':
     print("Running in directory:" + os.getcwd()) 

@@ -9,19 +9,22 @@
 <body>
     <form id="loginform" onsubmit="return false">
         <h1>Login:</h1>
-        <input type="text" placeholder="Username">
-        <input type="text" placeholder="Password">
+        <input type="text" placeholder="Username" id='username' required>
+        <input type="password" placeholder="Password" id="password" required>
         <button onclick="login()">Login</button>
+        <div id="statusbar" style="color: red; font-size: 1rem;">
+
+        </div>
     </form>
-    <form id="updateform" style="display: none;">
+    <form id="updateform" style="display: none;" onsubmit="return false">
         <h1>Add New Player</h1>
         <p>First and last name</p>
-        <input type="text" placeholder="First name">
-        <input type="text" placeholder="Last name">
+        <input type="text" placeholder="First name" required>
+        <input type="text" placeholder="Last name" required>
         <p>USCF ID</p>
-        <input type="text" placeholder="ID">
+        <input type="number" placeholder="ID" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
         <p>School</p>
-        <select id="schoolselector">
+        <select id="schoolselector" required>
             <option value="" disabled selected>Choose a school</option>
             <option value="Masterman HS">Masterman HS</option>
             <option value="Central HS">Central HS</option>
@@ -35,6 +38,7 @@
         <button style="margin-top: 1rem;">
             Submit
         </button>
+        <button style="margin-left: 2rem;" onclick="logout()">Logout</button>
     </form>
 </body>
 <script src="scripts/loginshit.js"></script>
