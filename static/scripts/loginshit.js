@@ -12,7 +12,7 @@ async function login() {
     const responseHash = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
 
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/secure/login', {
+        const response = await fetch('https://checkchesser.com/api/secure/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({username, response: responseHash}),
@@ -39,7 +39,7 @@ async function login() {
 
 async function getChallenge(username) {
     try{
-        const response = await fetch('http://127.0.0.1:8000/api/secure/challenge', {
+        const response = await fetch('https://checkchesser.com/api/secure/challenge', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username }),
@@ -53,7 +53,7 @@ async function getChallenge(username) {
 }
 
 async function logout() {
-    const response = await fetch('http://127.0.0.1:8000/api/secure/logout', { method: "POST" });
+    const response = await fetch('https://checkchesser.com/api/secure/logout', { method: "POST" });
     const result = await response.json();
     alert(result.message);
 
@@ -74,7 +74,7 @@ async function sendUpdate(event) {
     } 
     
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/secure/update', {
+        const response = await fetch('https://checkchesser.com/api/secure/update', {
             method: 'POST',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
