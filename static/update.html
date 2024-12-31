@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add new player</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <form id="loginform" onsubmit="login(); return false;">
@@ -15,33 +16,70 @@
 
         </div>
     </form>
-    <form id="updateform" style="display: none;" onsubmit="sendUpdate(event);">
-        <h1>Add New Player</h1>
-        <p>First and last name</p>
-        <input type="text" placeholder="First name" required id="firstname">
-        <input type="text" placeholder="Last name" required id="lastname">
-        <p>USCF ID</p>
-        <input type="number" placeholder="ID" required oninput="this.value = this.value.replace(/[^0-9]/g, '');" id="ID">
-        <p>School</p>
-        <select id="schoolselector" required>
-            <option value="" disabled selected>Choose a school</option>
-            <option value="Masterman HS">Masterman HS</option>
-            <option value="Central HS">Central HS</option>
-            <option value="Palumbo">Palumbo</option>
-            <option value="Carver HS">Carver HS</option>
-            <option value="Lincoln HS">Lincoln HS</option>
-            <option value="George Washington HS">George Washington HS</option>
-            <option value="Northeast HS">Northeast HS</option>
-        </select>
-        <br>
-        <button style="margin-top: 1rem;" type="submit">
-            Submit
-        </button>
-        <button style="margin-left: 2rem;" onclick="logout()">Logout</button>
-        <div id="chingabar">
-
+    <div id="hidden" style="display: none;">
+        <div class="update">
+            <form id="updateform" onsubmit="sendUpdate(event);">
+                <h1>Add New Player</h1>
+                <p>First and last name</p>
+                <input type="text" placeholder="First name" required id="firstname">
+                <input type="text" placeholder="Last name" required id="lastname">
+                <p>USCF ID</p>
+                <input type="number" placeholder="ID" required oninput="this.value = this.value.replace(/[^0-9]/g, '');" id="ID">
+                <p>School</p>
+                <select id="schoolselector" required>
+                    <option value="" disabled selected>Choose a school</option>
+                    <option value="Masterman HS">Masterman HS</option>
+                    <option value="Central HS">Central HS</option>
+                    <option value="Palumbo">Palumbo</option>
+                    <option value="Carver HS">Carver HS</option>
+                    <option value="Lincoln HS">Lincoln HS</option>
+                    <option value="George Washington HS">George Washington HS</option>
+                    <option value="Northeast HS">Northeast HS</option>
+                </select>
+                <br>
+                <button style="margin-top: 1rem;" type="submit">
+                    Submit
+                </button>
+                <button style="margin-left: 2rem;" onclick="logout()">Logout</button>
+                <div id="chingabar">
+        
+                </div>
+            </form>   
         </div>
-    </form>
+        <div class="edit" style="margin-left: 2rem;">
+            <h1>Edit Player</h1>
+            <form id="searchform" onsubmit="search(); return false">
+                <p>Search for player</p>
+                <input type="text" placeholder="Player's name" id="playersearch">
+                <button class="submitbutton" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+            <div id="searchresults" style="display: flex; flex-direction: column;">
+
+            </div>
+            <form onsubmit="return false" id="playerdata">
+                <p>Name:</p>
+                <input type="text" placeholder="First Name" id="first">
+                <input type="text" placeholder="Last Name" id="last">
+                <p>USCF ID:</p>
+                <input type="number" placeholder="USCF ID" required oninput="this.value = this.value.replace(/[^0-9]/g, '');" id="uscf">
+                <p>Player's Rating</p>
+                <input type="number" placeholder="Rating" required oninput="this.value = this.value.replace(/[^0-9]/g, '');" id='ratingjawn'>
+                <p>School:</p>
+                <select required id="editschoolselector">
+                    <option value="" disabled selected>Choose a school</option>
+                    <option value="Masterman HS">Masterman HS</option>
+                    <option value="Central HS">Central HS</option>
+                    <option value="Palumbo">Palumbo</option>
+                    <option value="Carver HS">Carver HS</option>
+                    <option value="Lincoln HS">Lincoln HS</option>
+                    <option value="George Washington HS">George Washington HS</option>
+                    <option value="Northeast HS">Northeast HS</option>
+                </select>
+            </form>
+        </div>
+    </div>
 </body>
 <script src="scripts/loginshit.js"></script>
 </html>

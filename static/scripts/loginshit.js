@@ -1,5 +1,7 @@
+let debounceTimeout;
+
 async function login() {
-    const updateform = document.getElementById("updateform");
+    const hidden = document.getElementById("hidden");
     const loginform = document.getElementById("loginform");
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -29,7 +31,7 @@ async function login() {
         }
 
         const result = await response.json();
-        updateform.style.display = "block";
+        hidden.style.display = "flex";
         loginform.style.display = "none";
         statusbar.innerText = '';
     } catch (error) {
@@ -58,7 +60,7 @@ async function logout() {
     alert(result.message);
 
     loginform.style.display = 'block';
-    updateform.style.display = 'none';
+    hidden.style.display = 'none';
 }
 
 async function sendUpdate(event) {
@@ -95,4 +97,58 @@ async function sendUpdate(event) {
     } catch (error) {
         statusbar.innerHTML = `<p style='color: red;'>Error contacting server</p>`;
     }
+}
+
+async function search() {
+    const query = document.getElementById('playersearch').value.trim()
+    clearTimeout(debounceTimeout);
+
+    // checks to see if the search bar is empty
+    if (query.length == 0) {
+        document.getElementById('searchform').innerHTML = '';
+    }
+
+    debounceTimeout = setTimeout(async() => {
+        try {
+            const response = await fetch(`https://checkchesser.com/api/search?query=${encodeURIComponent(query)}`);
+            if (response.ok) {
+                const data = await response.json();
+                displayResults(data);
+            } else {
+            document.getElementById('searchresults').innerText = `Error: ${response.status} ${response.statusText}`;
+            } 
+        } catch (error) {
+            document.getElementById('searchresults').innerText = 'Error contacting server';
+        }
+    }, 400);
+}
+
+function displayResults(results) {
+    const resultsDiv = document.getElementById('searchresults');
+    resultsDiv.innerHTML = '';
+
+    if (results.length > 0) {
+        results.forEach(item => {
+            const div = document.createElement('div');
+            div.innerHTML = `<button onclick='fillresults(${item.uscfid}, "${item.name}", "${item.school}", ${item.rating})'>${item.name}: ${item.uscfid}</button>`
+            resultsDiv.appendChild(div);
+        });
+    } else {
+        resultsDiv.innerHTML = '<div class="result-item" style="flex: 1;">No results found</div>';
+    }
+}
+
+function fillresults(id, name, school, rating) {
+    const ratingjawn = document.getElementById('ratingjawn');
+    const schoolselector = document.getElementById('editschoolselector');
+    const idinput = document.getElementById('uscf');
+    const firstnameinput = document.getElementById('first');
+    const lastnameinput = document.getElementById('last');
+
+    const firstlast = name.split(' ');
+    const firstname = firstlast[0];
+    const lastname = firstlast[1];
+
+    firstnameinput.value = firstname;
+    lastnameinput.value = lastname;
 }
