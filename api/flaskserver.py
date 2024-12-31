@@ -167,6 +167,7 @@ def updateEntry():
             lastname = ?
         WHERE id = ?;
         """, (name, school, uscfid, rating, link, firstname, lastname, rowid,))
+        conn.commit()
         
     return jsonify({'message': f"Updated {name}'s entry successfully. (Rowid: {rowid})"})
 
