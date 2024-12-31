@@ -16,13 +16,12 @@
     <link rel="stylesheet" href="styles/pairings.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body onload="getLeaderboard();">
     <div class="navbar">
         <div class="titlebar">
             <h1>CheckChesser</h1>
         </div>
         <div id="searchbuttons">
-            <a href="update.html">Add Player</a>
             <a href="#searchbar">Search</a>
             <a href="#leaderboard">Leaderboard</a>
             <a href="#pairings">Pairings</a>
@@ -93,7 +92,7 @@
             </tr>
         </table>
     </div>
-    <div class="section"></div>
+    <!-- <div class="section"></div>
     <div class="container pairingtitle">
         <h1 style="margin:0;">Pairings</h1>
     </div>
@@ -109,7 +108,10 @@
                 <th>linglong</th>
             </tr>
         </table>
-    </div>
+    </div> -->
+    <footer id="footer">
+        <a href="update.html">Add new player</a>
+    </footer>
 </body>
 <script src="scripts/index.js"></script>
 <script src="scripts/searchapi.js"></script>
