@@ -10,34 +10,45 @@ async function login() {
     const passwordChallenge = password + challenge;
     const hashBuffer = await crypto.subtle.digest("SHA-256", encoder.encode(passwordChallenge));
     const responseHash = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
-    console.log(responseHash);
 
-    const response = await fetch('http://127.0.0.1:8000/api/secure/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({username, response: responseHash}),
-    });
+    try {
+        const response = await fetch('http://127.0.0.1:8000/api/secure/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({username, response: responseHash}),
+        });
 
-    const result = await response.json();
-    if (response.ok) {
+        if (!response.ok) {
+            if (response.status === 401) {
+                statusbar.innerText = 'Username or password is incorrect';
+            } else {
+                statusbar.innerText = `Error: ${response.statusText}`;
+            }
+            return; // Exit the function to prevent further processing
+        }
+
+        const result = await response.json();
         updateform.style.display = "block";
         loginform.style.display = "none";
+        statusbar.innerText = '';
+    } catch (error) {
+        statusbar.innerText = "Error contacting server, try again later";
     }
-
-    if (response.status == 401) {
-        statusbar.innerText = 'Username or password is incorrect'
-    }
-
 }
 
 async function getChallenge(username) {
-    const response = await fetch('http://127.0.0.1:8000/api/secure/challenge', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username }),
-    });
-    const data = await response.json();
-    return data.challenge;
+    try{
+        const response = await fetch('http://127.0.0.1:8000/api/secure/challenge', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username }),
+        });
+        const data = await response.json();
+        return data.challenge;
+    } catch (error) {
+        document.getElementById('statusbar').innerText = "Error contacting server, try again later";
+        return;
+    }
 }
 
 async function logout() {

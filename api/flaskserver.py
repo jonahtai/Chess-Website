@@ -76,7 +76,6 @@ def get_challenge():
 
     challenge = secrets.token_hex(16)
     challenges[username] = challenge
-    print(challenges)
     return jsonify({"challenge": challenge}), 200
 
 @app.route('/api/secure/login', methods=["POST"])
@@ -100,12 +99,14 @@ def login():
             expected_hash = hashlib.sha256((stored_password_hash + challenge).encode()).hexdigest()
             if client_response == expected_hash:
                 session['username'] = username
+                print(session)
                 return jsonify({"message": "Login Successful"}), 200
     return jsonify({"message": "Invalid Credentials"}), 401
 
 @app.route('/api/secure/logout', methods=['POST'])
 def logout():
     session.pop('username', None)
+    print(session)
     return jsonify({"message": "Logged out successfully"}), 200
 
 if __name__ == '__main__':
