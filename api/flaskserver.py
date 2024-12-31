@@ -6,9 +6,10 @@ import os
 import secrets
 import hashlib
 import keys
+from update import getRating
 
 app = Flask(__name__)
-cors = CORS(app)
+cors = CORS(app, supports_credentials=True)
 bcrypt = Bcrypt(app)
 
 app.secret_key = keys.secret_key
@@ -108,6 +109,42 @@ def logout():
     session.pop('username', None)
     print(session)
     return jsonify({"message": "Logged out successfully"}), 200
+
+@app.route('/api/secure/update', methods=['POST'])
+def update():
+    print(session)
+    if 'username' not in session:
+        return jsonify({'message': 'Unauthorized'}), 401
+    
+    data = request.json
+    firstname = data.get('firstname')
+    lastname = data.get('lastname')
+    school = data.get('school')
+    id = data.get('ID')
+    print(id)
+    fullname = f"{firstname} {lastname}"
+    url = f"https://www.uschess.org/msa/MbrDtlTmntHst.php?{id}"
+    try:
+        rating = getRating(url)
+    except:
+        print('id invalid')
+        return jsonify({'message': "ID is invalid"}), 400
+    
+    with sqlite3.connect('../players.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute('SELECT name FROM names WHERE uscfid = ?', (id,))
+        existinguser = cursor.fetchone()
+    
+    if existinguser is not None:
+        print(f"chinga exists: {existinguser}")
+        return jsonify({'message': f"User {existinguser[0]} already exists"}), 400
+
+    with sqlite3.connect('../players.db') as conn:
+        cursor = conn.cursor()
+        print('adding the jawn')
+        cursor.execute('INSERT INTO names (name, school, uscfid, rating, link, firstname, lastname) VALUES (?, ?, ?, ?, ?, ?, ?)', (fullname, school, id, rating, url, firstname, lastname))
+        conn.commit()
+    return jsonify({'message': 'Database updated successfully'}), 201
 
 if __name__ == '__main__':
     print("Running in directory:" + os.getcwd()) 

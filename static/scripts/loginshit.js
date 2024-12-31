@@ -16,6 +16,7 @@ async function login() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({username, response: responseHash}),
+            credentials: 'include',
         });
 
         if (!response.ok) {
@@ -31,6 +32,7 @@ async function login() {
         updateform.style.display = "block";
         loginform.style.display = "none";
         statusbar.innerText = '';
+        console.log(document.cookie);
     } catch (error) {
         statusbar.innerText = "Error contacting server, try again later";
     }
@@ -58,4 +60,41 @@ async function logout() {
 
     loginform.style.display = 'block';
     updateform.style.display = 'none';
+}
+
+async function sendUpdate(event) {
+    event.preventDefault();
+    const statusbar = document.getElementById('chingabar');
+    const firstname = document.getElementById('firstname').value;
+    const lastname = document.getElementById('lastname').value;
+    const school = document.getElementById('schoolselector').value;
+    console.log(school);
+    const ID = document.getElementById('ID').value;
+
+    if (ID > 99999999 || firstname == '' || lastname == '') {
+        statusbar.innerHTML = `<p style='color: red;'>Sum ting wong</p>`;
+    } 
+    
+    try {
+        const response = await fetch('http://127.0.0.1:8000/api/secure/update', {
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                firstname: firstname,
+                lastname: lastname,
+                ID: ID,
+                school: school
+            })
+        });
+        const result = await response.json()
+        if (response.ok) {
+            statusbar.innerHTML = `<p style='color: green;'>Database updated</p>`;
+        } 
+        if (response.status == 400) {
+            statusbar.innerHTML = `<p style='color: red;'>${result.message}</p>`;
+        }
+    } catch (error) {
+        statusbar.innerHTML = `<p style='color: red;'>Error contacting server</p>`;
+    }
 }
