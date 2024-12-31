@@ -32,7 +32,6 @@ async function login() {
         updateform.style.display = "block";
         loginform.style.display = "none";
         statusbar.innerText = '';
-        console.log(document.cookie);
     } catch (error) {
         statusbar.innerText = "Error contacting server, try again later";
     }
@@ -68,7 +67,6 @@ async function sendUpdate(event) {
     const firstname = document.getElementById('firstname').value;
     const lastname = document.getElementById('lastname').value;
     const school = document.getElementById('schoolselector').value;
-    console.log(school);
     const ID = document.getElementById('ID').value;
 
     if (ID > 99999999 || firstname == '' || lastname == '') {

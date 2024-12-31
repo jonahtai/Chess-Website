@@ -49,7 +49,6 @@ def leaderboard():
     minRating = request.args.get("minRating", "0")
     maxRating = request.args.get("maxRating", "3000")
     # page = request.args.get("pageNo", "1")  still not sure if we should implement this
-    print(f"Schools: {schools}")
     conn = db_connect()
     cursor = conn.cursor()
     if schools == ['']:
@@ -100,19 +99,16 @@ def login():
             expected_hash = hashlib.sha256((stored_password_hash + challenge).encode()).hexdigest()
             if client_response == expected_hash:
                 session['username'] = username
-                print(session)
                 return jsonify({"message": "Login Successful"}), 200
     return jsonify({"message": "Invalid Credentials"}), 401
 
 @app.route('/api/secure/logout', methods=['POST'])
 def logout():
     session.pop('username', None)
-    print(session)
     return jsonify({"message": "Logged out successfully"}), 200
 
 @app.route('/api/secure/update', methods=['POST'])
 def update():
-    print(session)
     if 'username' not in session:
         return jsonify({'message': 'Unauthorized'}), 401
     
@@ -121,13 +117,11 @@ def update():
     lastname = data.get('lastname')
     school = data.get('school')
     id = data.get('ID')
-    print(id)
     fullname = f"{firstname} {lastname}"
     url = f"https://www.uschess.org/msa/MbrDtlTmntHst.php?{id}"
     try:
         rating = getRating(url)
     except:
-        print('id invalid')
         return jsonify({'message': "ID is invalid"}), 400
     
     with sqlite3.connect('../players.db') as conn:
@@ -136,12 +130,10 @@ def update():
         existinguser = cursor.fetchone()
     
     if existinguser is not None:
-        print(f"chinga exists: {existinguser}")
         return jsonify({'message': f"User {existinguser[0]} already exists"}), 400
 
     with sqlite3.connect('../players.db') as conn:
         cursor = conn.cursor()
-        print('adding the jawn')
         cursor.execute('INSERT INTO names (name, school, uscfid, rating, link, firstname, lastname) VALUES (?, ?, ?, ?, ?, ?, ?)', (fullname, school, id, rating, url, firstname, lastname))
         conn.commit()
     return jsonify({'message': 'Database updated successfully'}), 201
