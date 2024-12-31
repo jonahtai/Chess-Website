@@ -31,7 +31,7 @@ def search():
         return jsonify({"results" : []})
     
     cursor.execute("""
-    SELECT name, school, uscfid, rating, link FROM names
+    SELECT id, name, school, uscfid, rating, link FROM names
     WHERE name LIKE ? or name LIKE ? 
     ORDER BY firstname ASC, lastname ASC;
     """, (query + '%', "% " + query + "%"))
@@ -39,7 +39,7 @@ def search():
     results = cursor.fetchall()
     conn.close()
 
-    response = [{'name': row['name'], 'school': row['school'], 'uscfid': row['uscfid'], 'rating': row['rating'], 'link': row['link']} for row in results]
+    response = [{'name': row['name'], 'school': row['school'], 'uscfid': row['uscfid'], 'rating': row['rating'], 'link': row['link'], 'rowid': row['id']} for row in results]
     return jsonify(response)
 
 @app.route("/api/leaderboard", methods=["GET"])
@@ -137,6 +137,38 @@ def update():
         cursor.execute('INSERT INTO names (name, school, uscfid, rating, link, firstname, lastname) VALUES (?, ?, ?, ?, ?, ?, ?)', (fullname, school, id, rating, url, firstname, lastname))
         conn.commit()
     return jsonify({'message': 'Database updated successfully'}), 201
+
+@app.route('/api/secure/updateentry', methods=['POST'])
+def updateEntry():
+    if 'username' not in session:
+        print('not allowed')
+        return jsonify({'message': 'Unauthorized'}), 401
+    data = request.json
+
+    firstname = data.get('firstname')
+    lastname = data.get('lastname')
+    name = f"{firstname} {lastname}"
+    school = data.get('school')
+    rating = int(data.get('rating'))
+    uscfid = int(data.get('ID'))
+    rowid = int(data.get('rowid'))
+    link = f"https://www.uschess.org/msa/MbrDtlTmntHst.php?{uscfid}"
+
+    with sqlite3.connect('../players.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+        UPDATE names
+        SET name = ?,
+            school = ?,
+            uscfid = ?,
+            rating = ?,
+            link = ?,
+            firstname = ?,
+            lastname = ?
+        WHERE id = ?;
+        """, (name, school, uscfid, rating, link, firstname, lastname, rowid,))
+        
+    return jsonify({'message': f"Updated {name}'s entry successfully. (Rowid: {rowid})"})
 
 if __name__ == '__main__':
     print("Running in directory:" + os.getcwd()) 

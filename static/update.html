@@ -58,12 +58,14 @@
             <div id="searchresults" style="display: flex; flex-direction: column;">
 
             </div>
-            <form onsubmit="return false" id="playerdata">
+            <form onsubmit="updateEntry(); return false" id="playerdata">
                 <p>Name:</p>
-                <input type="text" placeholder="First Name" id="first">
-                <input type="text" placeholder="Last Name" id="last">
+                <input type="text" placeholder="First Name" id="first" required>
+                <input type="text" placeholder="Last Name" id="last" required>
                 <p>USCF ID:</p>
                 <input type="number" placeholder="USCF ID" required oninput="this.value = this.value.replace(/[^0-9]/g, '');" id="uscf">
+                <p>Row ID:</p>
+                <input type="text" id="rowid" readonly placeholder="Row ID">
                 <p>Player's Rating</p>
                 <input type="number" placeholder="Rating" required oninput="this.value = this.value.replace(/[^0-9]/g, '');" id='ratingjawn'>
                 <p>School:</p>
@@ -77,7 +79,12 @@
                     <option value="George Washington HS">George Washington HS</option>
                     <option value="Northeast HS">Northeast HS</option>
                 </select>
+                <br>
+                <button id="update" type="submit" style="margin-top: 1rem;">Update</button>
             </form>
+            <div id="result">
+
+            </div>
         </div>
     </div>
 </body>
