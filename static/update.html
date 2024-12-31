@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add new player</title>
+</head>
+<body>
+    <form id="loginform" onsubmit="login(); return false;">
+        <h1>Login:</h1>
+        <input type="text" placeholder="Username" id='username' required>
+        <input type="password" placeholder="Password" id="password" required>
+        <button type="submit">Login</button>
+        <div id="statusbar" style="color: red; font-size: 1rem;">
+
+        </div>
+    </form>
+    <form id="updateform" style="display: none;" onsubmit="sendUpdate(event);">
+        <h1>Add New Player</h1>
+        <p>First and last name</p>
+        <input type="text" placeholder="First name" required id="firstname">
+        <input type="text" placeholder="Last name" required id="lastname">
+        <p>USCF ID</p>
+        <input type="number" placeholder="ID" required oninput="this.value = this.value.replace(/[^0-9]/g, '');" id="ID">
+        <p>School</p>
+        <select id="schoolselector" required>
+            <option value="" disabled selected>Choose a school</option>
+            <option value="Masterman HS">Masterman HS</option>
+            <option value="Central HS">Central HS</option>
+            <option value="Palumbo">Palumbo</option>
+            <option value="Carver HS">Carver HS</option>
+            <option value="Lincoln HS">Lincoln HS</option>
+            <option value="George Washington HS">George Washington HS</option>
+            <option value="Northeast HS">Northeast HS</option>
+        </select>
+        <br>
+        <button style="margin-top: 1rem;" type="submit">
+            Submit
+        </button>
+        <button style="margin-left: 2rem;" onclick="logout()">Logout</button>
+        <div id="chingabar">
+
+        </div>
+    </form>
+</body>
+<script src="scripts/loginshit.js"></script>
+</html>

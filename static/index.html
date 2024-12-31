@@ -13,9 +13,10 @@
     <link rel="stylesheet" href="styles/util.css">
     <link rel="stylesheet" href="styles/hamburger.css">
     <link rel="stylesheet" href="styles/leaderboard.css">
+    <link rel="stylesheet" href="styles/pairings.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body onload="getLeaderboard();">
     <div class="navbar">
         <div class="titlebar">
             <h1>CheckChesser</h1>
@@ -23,6 +24,7 @@
         <div id="searchbuttons">
             <a href="#searchbar">Search</a>
             <a href="#leaderboard">Leaderboard</a>
+            <a href="#pairings">Pairings</a>
         </div>
         <div class="hamburger" id="hamburger" onclick="toggleMenu()">
             <span class="bar"></span>
@@ -56,13 +58,13 @@
             <div class="filter schools">
                 <button onclick="toggleDropdown()" style="font-size: 1rem;"><strong>Schools</strong></button>
                 <div class="schools-dropdown" id="dropdown">
-                    <a href="#" onclick="updateSchool('Central HS')">Central HS</a>
-                    <a href="#" onclick="updateSchool('Masterman HS')">Masterman HS</a>
-                    <a href="#" onclick="updateSchool('Carver HS')">Carver HS</a>
-                    <a href="#" onclick="updateSchool('Palumbo')">Palumbo</a>
-                    <a href="#" onclick="updateSchool('Lincoln HS')">Lincoln HS</a>
-                    <a href="#" onclick="updateSchool('George Washington HS')">George Washington HS</a>
-                    <a href="#" onclick="updateSchool('Northeast HS')">Northeast HS</a>
+                    <a onclick="updateSchool('Central HS')">Central HS</a>
+                    <a onclick="updateSchool('Masterman HS')">Masterman HS</a>
+                    <a onclick="updateSchool('Carver HS')">Carver HS</a>
+                    <a onclick="updateSchool('Palumbo')">Palumbo</a>
+                    <a onclick="updateSchool('Lincoln HS')">Lincoln HS</a>
+                    <a onclick="updateSchool('George Washington HS')">George Washington HS</a>
+                    <a onclick="updateSchool('Northeast HS')">Northeast HS</a>
                 </div>
             </div>
             <div class="filter minrating">
@@ -90,6 +92,26 @@
             </tr>
         </table>
     </div>
+    <!-- <div class="section"></div>
+    <div class="container pairingtitle">
+        <h1 style="margin:0;">Pairings</h1>
+    </div>
+    <div class="pairingfilters">
+        <nav>
+            chogn chogn ching
+        </nav>
+    </div>
+    <div class="container">
+        <table class="pairingtable">
+            <tr>
+                <th>chingA</th>
+                <th>linglong</th>
+            </tr>
+        </table>
+    </div> -->
+    <footer id="footer">
+        <a href="update.html">Add new player</a>
+    </footer>
 </body>
 <script src="scripts/index.js"></script>
 <script src="scripts/searchapi.js"></script>
