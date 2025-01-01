@@ -178,6 +178,8 @@ async function updateEntry() {
     const rowid = document.getElementById('rowid').value;
     const resultsdiv = document.getElementById('result');
 
+    resultsdiv.innerText = '';
+    resultsdiv.style.color = 'black';
 
     try {
         const response = await fetch('https://checkchesser.com/api/secure/updateentry', {
@@ -196,12 +198,64 @@ async function updateEntry() {
         const result = await response.json();
         if (response.ok) {
             resultsdiv.innerText = result.message;
+        } else if (response.status == 401) {
+            resultsdiv.innerText = 'Unauthorized';
         } else {
-            resultsdiv.innerText = 'sumting wong';
+            resultsdiv.innerText = `Error: ${result.message}`
         }
 
     } catch (error) {
         resultsdiv.innerText = 'cant connect johnson';
         return;
+    }
+}
+
+async function deleteEntry() {
+    const resultsdiv = document.getElementById('result');
+    const confirmed = confirm('Are you sure you want to delete this player?');
+    const rowid = document.getElementById('rowid').value;
+    resultsdiv.innerText = ``
+
+    if (rowid === null || rowid === undefined || rowid === '') {
+        alert('that jawn empty');
+        resultsdiv.innerText = 'that jawn did not get delted';
+        return false;
+    }
+
+    if (confirmed) {
+        try {
+            const response = await fetch('https://checkchesser.com/api/secure/delete', {
+                method: 'POST',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    rowid: rowid
+                })
+            });
+            const result = await response.json();
+            if (response.ok) {
+                resultsdiv.style.color = 'Green';
+                resultsdiv.style.fontWeight = 650;
+                resultsdiv.innerText = result.message;
+                return;
+            } else if (response.status == 401) {
+                resultsdiv.innerText = 'Not Authorized';
+                return;
+            } else if (response.status == 400) {
+                resultsdiv.innerText = result.message;
+                return;
+            } else {
+                resultsdiv.innerText = result.message;
+                return
+            }
+        } catch (error) {
+            resultsdiv.innerText = `SErver not goin`;
+            return;
+        }
+    } else {
+        alert('Delete Cancelled');
+        resultsdiv.style.color = 'red';
+        resultsdiv.innerText = 'not delted';
+        return false;
     }
 }
