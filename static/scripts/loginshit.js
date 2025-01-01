@@ -196,8 +196,10 @@ async function updateEntry() {
         const result = await response.json();
         if (response.ok) {
             resultsdiv.innerText = result.message;
+        } else if (response.status == 401) {
+            resultsdiv.innerText = 'Unauthorized';
         } else {
-            resultsdiv.innerText = 'sumting wong';
+            resultsdiv.innerText = `Error: ${response.message}`
         }
 
     } catch (error) {

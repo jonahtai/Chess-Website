@@ -154,20 +154,23 @@ def updateEntry():
     rowid = int(data.get('rowid'))
     link = f"https://www.uschess.org/msa/MbrDtlTmntHst.php?{uscfid}"
 
-    with sqlite3.connect('../players.db') as conn:
-        cursor = conn.cursor()
-        cursor.execute("""
-        UPDATE names
-        SET name = ?,
-            school = ?,
-            uscfid = ?,
-            rating = ?,
-            link = ?,
-            firstname = ?,
-            lastname = ?
-        WHERE id = ?;
-        """, (name, school, uscfid, rating, link, firstname, lastname, rowid,))
-        conn.commit()
+    try:
+        with sqlite3.connect('../players.db') as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+            UPDATE names
+            SET name = ?,
+                school = ?,
+                uscfid = ?,
+                rating = ?,
+                link = ?,
+                firstname = ?,
+                lastname = ?
+            WHERE id = ?;
+            """, (name, school, uscfid, rating, link, firstname, lastname, rowid,))
+            conn.commit()
+    except Exception as e:
+        return jsonify({'message': f"{e}"})
         
     return jsonify({'message': f"Updated {name}'s entry successfully. (Rowid: {rowid})"})
 
