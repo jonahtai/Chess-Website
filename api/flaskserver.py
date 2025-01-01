@@ -168,11 +168,35 @@ def updateEntry():
                 lastname = ?
             WHERE id = ?;
             """, (name, school, uscfid, rating, link, firstname, lastname, rowid,))
+
+            if cursor.rowcount == 0:
+                return jsonify({'message': 'ID does not exist in the DB'}), 400
+
             conn.commit()
     except Exception as e:
-        return jsonify({'message': f"{e}"})
+        return jsonify({'message': f"{e}"}), 400
         
-    return jsonify({'message': f"Updated {name}'s entry successfully. (Rowid: {rowid})"})
+    return jsonify({'message': f"Updated {name}'s entry successfully. (Rowid: {rowid})"}), 200
+
+@app.route('/api/secure/delete', methods=['POST'])
+def delete():
+    if 'username' not in session:
+        return jsonify({'message': 'Unauthorized'}), 401
+    data = request.json
+    rowid = data.get('rowid')
+
+    try:
+        with sqlite3.connect('../players.db') as conn:
+            cursor = conn.cursor()
+            cursor.execute('DELETE FROM names WHERE id = ?;', (rowid,))
+
+            if cursor.rowcount == 0:
+                return jsonify({'message': "Cannot delete because ID does not exist"}), 400
+    except Exception as e:
+        return jsonify({'message': f"{e}"}), 400
+
+    return jsonify({'message': f"Deleted entry with rowid: {rowid}"}), 200    
+
 
 if __name__ == '__main__':
     print("Running in directory:" + os.getcwd()) 
