@@ -55,6 +55,8 @@ async function getChallenge(username) {
 }
 
 async function logout() {
+    const hidden = document.getElementById("hidden");
+    const loginform = document.getElementById("loginform");
     const response = await fetch('https://checkchesser.com/api/secure/logout', { method: "POST" });
     const result = await response.json();
     alert(result.message);
@@ -71,8 +73,12 @@ async function sendUpdate(event) {
     const school = document.getElementById('schoolselector').value;
     const ID = document.getElementById('ID').value;
 
-    if (ID > 99999999 || firstname == '' || lastname == '') {
-        statusbar.innerHTML = `<p style='color: red;'>Sum ting wong</p>`;
+    statusbar.innerHTML = '';
+
+    if (ID.toString().length !== 8 || firstname == '' || lastname == '') {
+        console.log('bruh');
+        statusbar.innerHTML = `<p style='color: red;'>ID must be 8 digits</p>`;
+        return false;
     } 
     
     try {
@@ -93,6 +99,9 @@ async function sendUpdate(event) {
         } 
         if (response.status == 400) {
             statusbar.innerHTML = `<p style='color: red;'>${result.message}</p>`;
+        }
+        if (response.status == 401) {
+            statusbar.innerHTML = `<p style='color: red;'>Unauthorized</p>`
         }
     } catch (error) {
         statusbar.innerHTML = `<p style='color: red;'>Error contacting server</p>`;
@@ -145,6 +154,8 @@ function fillresults(id, name, school, rating, rowid) {
     const firstnameinput = document.getElementById('first');
     const lastnameinput = document.getElementById('last');
     const rowidbox = document.getElementById('rowid');
+    const resultsDiv = document.getElementById('searchresults');
+    resultsDiv.innerHTML = '';
 
     const firstlast = name.split(' ');
     const firstname = firstlast[0];
