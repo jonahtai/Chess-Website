@@ -45,7 +45,7 @@ function updateFilters() {
 }
 
 function removeFilter(button) {
-    let index = schools.indexOf(button.parentElement.textContent - 'x')
+    let index = schools.indexOf(button.parentElement.textContent.slice(0, -1))
     const chip = button.parentElement;
     schools.splice(index, 1)
     chip.remove();
