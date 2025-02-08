@@ -28,6 +28,16 @@ def getRating(url):
     rating_regular = int(rating_regular)
     return(rating_regular)
 
+#CODE BY CALVIN WANG
+def officialRating(url):
+    a = url.replace("TmntHst", "Main")
+    a = a.replace("TnmtHst", "Main")
+    result = requests.get(a)
+    doc = BeautifulSoup(result.text, "html.parser")
+    print(a)
+    rating = str(doc.find_all(["nobr"])).split()[1]
+    return(rating)
+
 if __name__ == "__main__":
     start = time.perf_counter()
     conn = sqlite3.connect('../players.db')
@@ -37,8 +47,9 @@ if __name__ == "__main__":
     rows = cursor.fetchall()
     for row in rows:
         row_id, url = row
-        new_rating = getRating(url)
-        cursor.execute("UPDATE names SET rating = ? where id = ?", (new_rating, row_id))
+        live_rating = getRating(url)
+        official_rating = officialRating(url)
+        cursor.execute("UPDATE names SET rating = ?, officialRating = ? WHERE id = ?", (live_rating, official_rating, row_id))
     conn.commit()
     print("pp")
     end = time.perf_counter()

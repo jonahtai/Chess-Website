@@ -66,7 +66,7 @@ def leaderboard():
     query = f"SELECT name, school, rating FROM names WHERE school IN ({placeholders}) AND RATING BETWEEN ? AND ? ORDER BY rating DESC LIMIT 10"
     cursor.execute(query, schools + [minRating, maxRating])
     results = cursor.fetchall()
-    conn.close
+    conn.close()
     return jsonify([dict(row) for row in results])
 
 @app.route('/api/secure/challenge', methods=['POST'])
