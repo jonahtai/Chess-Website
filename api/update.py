@@ -5,28 +5,11 @@ import time
 
 #CODE BY SOHAIL AJI
 def getRating(url):
-    html = requests.get(url)
-    s = BeautifulSoup(html.text, "html.parser")
-    table = s.find("table", {"border" : "1", "cellpadding": "4", "cellspacing" : "0", "valign": "top", "width": "960"})
-    rows = table.find_all("tr")[1:]
-    event_data = []
-
-    for row in rows:
-        cells = row.find_all("td")
-        event = {
-            "Event Name" : cells[2].text.strip(),
-            "Regular Rating Before/After" : cells[2].text.strip()
-        }
-        event_data.append(event)
-    for event in event_data:
-        if event["Regular Rating Before/After"] != "":
-            rating_regular = event["Regular Rating Before/After"].split()[2]
-            if rating_regular != "/":
-                if rating_regular == "=>":
-                    rating_regular = event["Regular Rating Before/After"].split()[3]
-                break
-    rating_regular = int(rating_regular)
-    return(rating_regular)
+    data = requests.get(url).json()
+    data1 = data["items"][0]["ratingRecords"][0]["postRating"]
+    data2 = data["items"][0]["ratingRecords"][0]["preRating"]
+    print(f"scraped {url}")
+    return data1,data2
 
 if __name__ == "__main__":
     start = time.perf_counter()
@@ -37,8 +20,8 @@ if __name__ == "__main__":
     rows = cursor.fetchall()
     for row in rows:
         row_id, url = row
-        new_rating = getRating(url)
-        cursor.execute("UPDATE names SET rating = ? where id = ?", (new_rating, row_id))
+        new_rating, new_official_rating = getRating(url)
+        cursor.execute("UPDATE names SET rating = ?, officialrating = ? where id = ?", (new_rating, new_official_rating, row_id))
     conn.commit()
     print("pp")
     end = time.perf_counter()
