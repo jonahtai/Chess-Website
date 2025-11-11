@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 import requests
 import time
 
-#CODE BY SOHAIL AJI
 def getRating(url):
     data = requests.get(url).json()
     data1 = data["items"][0]["ratingRecords"][0]["postRating"]
